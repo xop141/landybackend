@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cafeRoute from "./route/cafeRoute.js";
 import { createClient } from "redis";
-
+import compression from 'compression'
 
 
 dotenv.config();
 const app = express();
-
+app.use(compression())
 app.use(
   cors({
     origin: "https://landyfront.vercel.app",
@@ -36,7 +36,7 @@ client.on("error", (err) => console.error("Redis Client Error:", err));
 const main = async () => {
   await client.connect();
   app.use("/", cafeRoute);
-  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+  app.listen(PORT);
 };
 
 main();

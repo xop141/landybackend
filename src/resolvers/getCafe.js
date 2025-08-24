@@ -12,10 +12,13 @@ const getCafe = async (req, res) => {
     if (cached) {
       console.log("✅ Serving cafes from Redis");
       return res.json(JSON.parse(cached));
+    } else{
+      console.log('serving from db');
+      
     }
 
     const cafes = await cafeModel
-      .find({}, "images name _id pcs.pricePerHour pcs.name")
+      .find({}, "images name _id")
       .skip(skip)
       .limit(limit);
 
@@ -28,7 +31,7 @@ const getCafe = async (req, res) => {
       totalPages: Math.ceil(total / limit),
     };
 
-    await redisClient.setEx(cacheKey, 60, JSON.stringify(result));
+    await redisClient.setEx(cacheKey, 3600, JSON.stringify(result));
   
 
     res.json(result);
