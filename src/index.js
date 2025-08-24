@@ -6,13 +6,13 @@ import cafeRoute from "./route/cafeRoute.js";
 import { createClient } from "redis";
 import compression from 'compression'
 
-
 dotenv.config();
 const app = express();
 app.use(compression())
 app.use(
   cors({
     origin: "https://landyfront.vercel.app",
+    // https://landyfront.vercel.app
   })
 );
 app.use(express.json());
