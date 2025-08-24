@@ -11,11 +11,13 @@
     "start": "nodemon src/index.js"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "mongoose": "^8.18.0",
     "nodemon": "^3.1.10",
-    "redis": "^5.8.2"
+    "redis": "^5.8.2",
+    "response-time": "^2.3.4"
   }
 }
