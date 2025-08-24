@@ -6,7 +6,7 @@ const getCafe = async (req, res) => {
     const limit = parseInt(req.query.limit) || 5;
     const skip = (page - 1) * limit;
 
-    const cacheKey = `cafes:page=${page}&limit=${limit}`;
+    const cacheKey = `cafes:${page}:${limit}`;
 
     const cached = await redisClient.get(cacheKey);
     if (cached) {
@@ -20,7 +20,8 @@ const getCafe = async (req, res) => {
     const cafes = await cafeModel
       .find({}, "images name _id")
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .lean();
 
     const total = await cafeModel.countDocuments();
 
@@ -31,7 +32,7 @@ const getCafe = async (req, res) => {
       totalPages: Math.ceil(total / limit),
     };
 
-    await redisClient.setEx(cacheKey, 3600, JSON.stringify(result));
+    await redisClient.set(cacheKey, JSON.stringify(result));
   
 
     res.json(result);

@@ -17,7 +17,7 @@ const getSpec = async (req, res) => {
 
     const cafe = await cafeModel.findById(id, "pcs").lean();
     if (!cafe) return res.status(404).json({ message: "Cafe not found" });
-    await redisClient.setEx(cacheKey, 3600, JSON.stringify(cafe));
+    await redisClient.setEx(cacheKey, 36000, JSON.stringify(cafe));
     res.json(cafe);
   } catch (error) {
     console.error(error);
