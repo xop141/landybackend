@@ -7,5 +7,5 @@ const route = express.Router()
 route.post('/getLocation', getCafeLocation)
 route.post('/create', createCafe)
 route.get('/getCafe', getCafe)
-route.get('/getSpec/:id', getSpec)
+route.get('/getSpec', getSpec)
 export default route
