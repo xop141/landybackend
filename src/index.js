@@ -18,10 +18,11 @@ app.use(
 app.use(express.json());
 
 
-// mongoose
-//   .connect(process.env.MONGO_URL)
-//   .then(() => console.log("✅ DB connected"))
-//   .catch((err) => console.error("DB connection error:", err));
+ mongoose
+   .connect(process.env.MONGO_URL)
+
+   .then(() => console.log("✅ DB connected"))
+   .catch((err) => console.error("DB connection error:", err));
 
 const PORT = process.env.PORT || 5000;
 
