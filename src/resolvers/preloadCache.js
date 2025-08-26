@@ -13,6 +13,7 @@ export const preloadCache = async () => {
 };
 
 export const getCafeCache = async () => {
+  console.time("getCafeCache");
   if (!cafeCache) {
     return preloadCache();
   } else{
