@@ -1,18 +1,12 @@
-import Cafe from "../models/cafeModel.js";
-import client from "../redisClient.js";
-const getCafeTest = async (req,res) => {
+import { getCafeCache } from "./preloadCache.js";
 
-  const page = parseInt(req.query.page) || 1;
-
+const getCafeTest = async (req, res) => {
   try {
-    const cached = await client.get(`cafes:page:${page}`);
-    if (!cached) {
-      return res.status(404).json({ error: "Page not found" });
-    }
-    res.json(JSON.parse(cached));
+    const cafes = await getCafeCache();
+    res.json(cafes);
   } catch (err) {
-    console.error("❌ Error fetching cafes page:", err);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: err.message });
   }
 };
-export default getCafeTest
+
+export default getCafeTest;
