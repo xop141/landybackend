@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
 import cafeRoute from "./route/cafeRoute.js";
 import compression from 'compression'
