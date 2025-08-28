@@ -11,7 +11,7 @@ const app = express();
 app.use(compression())
 app.use(
   cors({
-    origin: ["https://landyfront-mvk8tvazu-xop141s-projects.vercel.app",
+    origin: ["https://landyfront.vercel.app",
      "http://localhost:3000"]
   })
 );
