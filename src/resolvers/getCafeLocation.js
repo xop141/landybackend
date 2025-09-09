@@ -1,7 +1,7 @@
 import cafeModel from "../models/cafeModel.js";
 const getCafeLocation = async (req, res) => {
   try {
-    const allCafes = await cafeModel.find({},"location name -_id");
+    const allCafes = await cafeModel.find({},"location name _id");
     res.json(allCafes);
   } catch (error) {
     console.log(error);
