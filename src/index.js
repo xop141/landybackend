@@ -10,7 +10,7 @@ preloadCafeCache();
 app.use(express.json());
 app.use(
   cors({
-    origin: [process.env.FRONT_TEST],
+    origin: [process.env.FRONT_LINK],
   })
 );
 const MONGO = process.env.MONGO;
